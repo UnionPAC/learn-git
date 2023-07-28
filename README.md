@@ -47,6 +47,15 @@ git commit [-a | --interactive | --patch] [-s] [-v] [-u<mode>] [--amend]
 ```
 > https://git-scm.com/docs/git-commit
 
+**Committing Best Practices**
+- Commits shouldn't be too big or too small
+- Commit often
+- As you reach a state you want to record **THEN** make a commit
+- Make meaningful commit messages
+
+**Skipping the Staging Area**
+`git commit -am "enter commit message here"`
+
 
 ### <a id="browsing_history">Browsing History 📖</a>
 
