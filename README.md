@@ -30,7 +30,7 @@ Git is a Version Control System that tracks changes made to a codebase over time
 
 **Staging Files**
 `git status`: shows the working tree status
- 
+
 **Committing Changes**
 `git commit`: records changes to the repository
 
@@ -45,9 +45,11 @@ git commit [-a | --interactive | --patch] [-s] [-v] [-u<mode>] [--amend]
 	   [(--trailer <token>[(=|:)<value>])…​] [-S[<keyid>]]
 	   [--] [<pathspec>…​]
 ```
+
 > https://git-scm.com/docs/git-commit
 
 **Committing Best Practices**
+
 - Commits shouldn't be too big or too small
 - Commit often
 - As you reach a state you want to record **THEN** make a commit
@@ -56,6 +58,48 @@ git commit [-a | --interactive | --patch] [-s] [-v] [-u<mode>] [--amend]
 **Skipping the Staging Area**
 `git commit -am "enter commit message here"`
 
+**Removing Files**
+
+`git rm`: Remove files from the working tree and from the index
+`git rm file1.txt`
+
+**Renaming or Moving Files**
+
+`git mv`: Move or rename a file, a directory, or a symlink
+`git mv file1.txt main.js`
+
+**Ignoring Files**
+
+A *.gitignore* file specifies intentionally untracked files that Git should ignore.
+
+- Sometimes a file or directory is already added to your project and cannot simply be ignored by *.gitignore*, in that case we have to remove the file from the staging area and then add it to our .*gitignore* file.
+
+👇
+
+**Git rm Options**
+`--cached` Use this option to unstage and remove paths only from the index (staging area). Working tree files, whether modified or not, will be left alone.
+
+`-r` Allow recursive removal when a leading directory name is given.
+
+**Short Status**
+
+**View Staged and Unstaged Changes**
+
+**Visual Diff Tools**
+
+**Viewing History**
+
+**Viewing a Commit**
+
+**Unstaging Files**
+
+**Discarding Local Changes**
+
+**Restoring a File to an Earlier Version**
+
+**Creating Snapshots with VSCode**
+
+**Creating Snapshots with GitKraken**
 
 ### <a id="browsing_history">Browsing History 📖</a>
 
