@@ -121,10 +121,6 @@ A *.gitignore* file specifies intentionally untracked files that Git should igno
 
 `git restore --source=HEAD~1 file1.js`
 
-**Creating Snapshots with VSCode**
-
-**Creating Snapshots with GitKraken**
-
 ### <a id="browsing_history">Browsing History 📖</a>
 
 ### <a id="branching">Branching 🌳</a>
