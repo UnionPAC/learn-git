@@ -83,17 +83,39 @@ A *.gitignore* file specifies intentionally untracked files that Git should igno
 
 **Short Status**
 
+`git status -s`: Shows a short format of the working tree status
+
 **View Staged and Unstaged Changes**
 
-**Visual Diff Tools**
+`git diff`: Show changes between the working tree and the index or a tree, changes between the index and a tree, changes between two trees, changes resulting from a merge, changes between two blob objects, or changes between two files on disk.
+
+`git diff --staged`
 
 **Viewing History**
 
+`git log`: Show commit logs
+
+`git log --oneline`
+`git log --oneline --reverse`
+
 **Viewing a Commit**
+
+`git show`: Shows one or more objects (blobs, trees, tags and commits).
+
+`git show HEAD~1`
+
+`git ls-tree`: List the contents of a tree object
 
 **Unstaging Files**
 
+`git restore`: Restore specified paths in the working tree with some contents from a restore source. If a path is tracked but does not exist in the restore source, it will be removed to match the source.
+
+`git restore .`
+`git restore file1.js`
+
 **Discarding Local Changes**
+
+`git clean`: Remove untracked files from the working tree
 
 **Restoring a File to an Earlier Version**
 
