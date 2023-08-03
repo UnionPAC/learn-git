@@ -11,7 +11,7 @@ I made this repo in order to strengthen my knowledge of Git. It will not only be
 
 #### Table of Contents
 
-1. [Creating Snapshots](#creating-snapshots)
+1. [Creating Snapshots](#creating_snapshots)
 2. [Browsing History](#browsing_history)
 3. [Branching](#branching)
 4. [Collaboration](#collaboration)
@@ -70,9 +70,9 @@ git commit [-a | --interactive | --patch] [-s] [-v] [-u<mode>] [--amend]
 
 **Ignoring Files**
 
-A *.gitignore* file specifies intentionally untracked files that Git should ignore.
+A _.gitignore_ file specifies intentionally untracked files that Git should ignore.
 
-- Sometimes a file or directory is already added to your project and cannot simply be ignored by *.gitignore*, in that case we have to remove the file from the staging area and then add it to our .*gitignore* file.
+- Sometimes a file or directory is already added to your project and cannot simply be ignored by _.gitignore_, in that case we have to remove the file from the staging area and then add it to our ._gitignore_ file.
 
 👇
 
@@ -122,6 +122,194 @@ A *.gitignore* file specifies intentionally untracked files that Git should igno
 `git restore --source=HEAD~1 file1.js`
 
 ### <a id="browsing_history">Browsing History 📖</a>
+
+**Viewing the History**
+
+https://git-scm.com/docs/git-log
+
+`git log`
+
+_Options_
+`--oneline`
+`--stat`
+`--patch`
+
+**Filtering the History**
+
+- Filter by latest commits
+
+`git log -3` - This limits the number of commits to 3, starting with the most recent.
+_note: 3 is just used for this example, but can be replaced by any number._
+
+- Filter by author
+
+`git log --author="Geoff` - Limits the commits output to ones with the author header lines that match.
+_note: `--author` expects a pattern which will be treated as a regular expression.
+So `--author="Geoff"` would also show commits by an author named Geoffrey._
+
+- Filter by date
+
+`git log --before`
+`git log --after`
+
+_Examples:_
+
+`git log --after="2020-08-17"`
+`git log --after="yesterday"`
+`git log --after="one week ago"`
+
+- Filter by subject
+
+`git log --grep="GUI"`
+
+_note: this operation is case sensitive_
+
+- Filter by content
+
+`git log -S"OBJECTIVES"`
+
+`-S` Expects a _string_ and looks for differences that change the number of occurrences of the specified string (i.e. addition/deletion) in a file.
+
+- Filter by range
+
+`git log <commitHash1>...<commitHash2>`
+_i.e_ `git log 91f7d40...1ebb7a7`
+
+- Filter by commits that touched certain files
+
+`git log helloWorld.txt`
+
+_sometimes we'll need to seperate our file name from our options ... we can do that like this:_
+
+`git log --oneline -- helloWorld.txt`
+
+_note: if you use this space `--`, you must keep your options together_
+
+_i.e_ `git log --oneline --patch -- helloWorld.txt`
+
+**Formatting the Log Output**
+
+https://git-scm.com/docs/git-log#_pretty_formats
+
+`git log --pretty=format:"%Cblue%an%Creset made commit %h on %cd"`
+
+`%an` - author name
+`%H` - commit hash
+`%h` - abbreviated commit hash
+`%cd` - committer date
+
+`%Cblue%an%Creset` - changes the author name to blue and then resets the color to default
+
+**Aliases**
+
+- we can setup aliases for commands we use frequently
+
+_Creating a custom git log command:_
+`git config --global alias.lg "log --pretty=format:'%an committed %h'"`
+
+_Custom command that restores all files in the staging area:_
+`git config --global alias.unstage "restore --staged ."`
+
+**Viewing a Commit**
+
+There are two ways to reference a commit:
+
+1. Commit Hash
+2. Relative reference to the HEAD
+
+`git show HEAD~2` - 2 commits before the last commit
+
+- We can view the final version of a file in this commit like this:
+
+`git show HEAD~2:testDirectory/test.js`
+
+`git show --name-only` - show only names of changed files
+
+`git show --name-status` - show only names and status of changed files
+
+**Viewing the Changes Across Commits**
+
+`git diff HEAD~2 HEAD` - shows all changes between these commits
+
+`git diff HEAD~2 HEAD test.js` shows only the changes that happened to _test.js_ between these commits.
+
+_Other Examples:_
+
+`git diff HEAD~2 HEAD --name-only`
+`git diff HEAD~2 HEAD --name-status`
+
+**Checking Out a Commit**
+
+- To go back to an earlier commit _(move our HEAD pointer)_
+  `git checkout <commitHash>`
+
+_Note: When in the 'detached HEAD' state we should not create new commits_
+
+- To show all commits, even if HEAD is behind, we can use the option `-all`
+  `git log --oneline --all` 
+  
+  <br />
+
+- To attach the HEAD pointer to the master branch
+  `git checkout master`
+
+**Finding Bugs Using Bisect** 🪲
+
+Start using Bisect - `git bisect start`
+
+Now we need to provide a commit that is bad, and one that is known to be good. This way we can start to narrow down where things went wrong.
+
+`git bisect bad`
+
+`git bisect good <commitHash>`
+
+
+End our Bisect session, and attach the HEAD back to master - `git bisect reset`
+
+**Find Contributors Using Shortlog**
+
+`git shortlog`
+
+https://git-scm.com/docs/git-shortlog#_options
+
+**Viewing the History of a File**
+
+`git log --oneline --patch file1.txt`
+
+**Restoring a Deleted File**
+
+`git checkout <commitHash> <fileName>`
+
+**Finding the Author of Line Using Blame**
+
+`git blame <fileName>`
+
+**Tagging**
+
+`git tag`
+
+`git tag <tagName> <commitHash>`
+
+- We can checkout a commit by using it's tag instead of it's hash like this:
+
+`git checkout <tagName>`
+
+To view all the tags we have created - `git tag`
+
+There are different types of tags
+
+1. Lightweight tags
+	- A reference/ pointer to a particular commit
+
+<br />
+
+2. Annotated tags
+	- contain a creation date, the tagger name and e-mail, a tagging message, and an optional GnuPG signature
+
+
+To create an Annotated tag we use `git tag -a v1.1 -m "Some message"`
+
+`git tag -d <tagName>` - to delete a tag
 
 ### <a id="branching">Branching 🌳</a>
 
