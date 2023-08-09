@@ -313,6 +313,95 @@ To create an Annotated tag we use `git tag -a v1.1 -m "Some message"`
 
 ### <a id="branching">Branching 🌳</a>
 
+**Working with Branches**
+
+`git-branch` - List, create, or delete branches
+
+**Create a new branch**
+
+`git branch <newBranch>`
+*ie.* `git branch bugfix`
+
+**List branches**
+
+`git branch`
+
+- Using `git branch` will list branches and show what branch you are currently on. You can also use `git status` to check which branch you are on.
+
+**Switch to a branch**
+
+`git switch <branchName>`
+
+**Renaming a branch**
+
+- We can use the `-m`or `--move` option to move/rename a branch, together with its config and reflog.
+
+`git branch -m <oldName> <newName>`
+
+
+**Deleting a branch**
+
+- We can use the `-d` or `--delete` option to delete a branch.
+
+*Note: The branch must be fully merged in its upstream branch, or in HEAD if no upstream was set with --track or --set-upstream-to.*
+
+`git branch -d <branchName>`
+
+- `-D` is a shortcut for --delete --force.
+
+**Comparing Branches**
+
+`git log master..bugfix/signup-form`
+
+- this shows the commits which are in `bugfix/signup-form` but are *NOT* in `master`
+
+`git diff master..bugfix/signup-form`
+
+- this shows the differences between `bugfix/signup-form` and `master`
+
+We can make this shorter by just writing `git diff bugfix/signup-form`
+
+- This shows the difference between the current branch *(which is master in our case)* and `bugfix/signup-form`
+
+`git diff --name-status bugfix/signup-form`
+
+- this shows only the files which are changed between the current branch and the `bugfix/signup-form` branch
+
+**Stashing**
+
+Stashing takes the dirty state of your working directory — that is, your modified tracked files and staged changes — and saves it on a stack of unfinished changes that you can reapply at any time (even on a different branch).
+
+`git stash` - Stash the changes in a dirty working directory away
+
+`git stash push -m "New tax rules."`
+
+**View our stashes**
+
+`git stash list`
+
+**Show a stash**
+
+`git stash show <id>`
+
+**Apply stash on our working directory**
+
+`git stash apply <id>`
+
+**Remove a stash**
+
+`git stash drop <id>`
+
+**Merges**
+
+Types of merges:
+
+1. Fast-forward merges *( if branches have not diverged )*
+2. 3-way merges *( if branches have diverged )*
+
+**Fast-forward Merges**
+
+**Three-way Merges**
+
 ### <a id="collaboration">Collaboration 👥</a>
 
 ### <a id="rewriting_history">Rewriting History ✍️</a>
