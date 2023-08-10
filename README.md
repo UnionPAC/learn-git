@@ -332,6 +332,10 @@ To create an Annotated tag we use `git tag -a v1.1 -m "Some message"`
 
 `git switch <branchName>`
 
+**Create & Switch to a Branch**
+
+`git switch -C <branchName>`
+
 **Renaming a branch**
 
 - We can use the `-m`or `--move` option to move/rename a branch, together with its config and reflog.
@@ -398,9 +402,71 @@ Types of merges:
 1. Fast-forward merges *( if branches have not diverged )*
 2. 3-way merges *( if branches have diverged )*
 
-**Fast-forward Merges**
+**Viewing Merged and Unmerged Branches**
 
-**Three-way Merges**
+`git branch --merged`
+
+- shows all the branches that have been merged into the current branch
+
+`git branch --no-merged`
+
+- shows the list of branches that have not been merged into the current branch
+
+**Merge Conflicts**
+
+A merge conflict arises when conflicting changes to the same part of a file occur in separate branches during a merge operation, requiring manual resolution.
+
+**Graphical Merge Tools**
+
+- Kdiff
+- P4Merge
+
+**Aborting a Merge**
+
+`git merge --abort`
+
+**Undoing a Faulty Merge**
+
+We have 2 options
+
+1. Remove the commit *(not recommended)*
+
+`git reset --hard HEAD~1`
+
+2. Revert
+
+`git revert -m 1 HEAD`
+
+*Resetting Options*
+
+**1. soft**
+
+A soft reset resets the branch's HEAD pointer to a specific commit while keeping the changes from the commits that were reset. The changes are staged for a new commit.
+
+**2. mixed**
+
+A mixed reset (also known as the default reset) resets the branch's HEAD pointer to a specific commit and also resets the staging area, effectively unstaging any changes. The changes are preserved in the working directory, allowing you to make new staging choices.
+
+**3. hard**
+
+A hard reset resets the branch's HEAD pointer to a specific commit, completely discarding any changes and removing them from both the staging area and the working directory. It effectively reverts your working directory to the state of the chosen commit.
+
+**Squash Merging**
+
+`git merge --squash <branchName>`
+
+**Rebasing**
+
+Rebasing is a Git operation used to integrate changes from one branch onto another by moving, or replaying, the commits of one branch on top of another. Unlike merging, which creates a new commit that has two parent commits, a rebase creates a linear sequence of commits.
+
+However, it's important to note that while rebasing can create a cleaner history, it can also rewrite commit history, potentially causing problems for collaborators if not used carefully. Rewriting history can be problematic if others have based their work on the original branch, as it can lead to confusion and conflicts.
+
+**Cherry Picking**
+
+Cherry picking allows you to select and apply specific commits from one branch to another. It enables you to pick individual commits and apply them to a different branch, essentially "cherry-picking" the changes you want without merging the entire branch.
+
+`git cherry-pick <commitHash>`
+
 
 ### <a id="collaboration">Collaboration 👥</a>
 
