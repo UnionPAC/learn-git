@@ -470,4 +470,45 @@ Cherry picking allows you to select and apply specific commits from one branch t
 
 ### <a id="collaboration">Collaboration 👥</a>
 
+**Fetching**
+
+`git fetch <remote> <branchName>`
+
+- *if branchName is excluded it will fetch all the commits*
+- *if remote is excluded, by default it will fetch origin*
+
+`git branch -vv`
+
+- shows how our local and remote branch are diverging
+
+In summary, `git fetch` retrieves new commits and updates branch information from a remote repository **without** automatically merging them into your local branches.
+
+**Pulling**
+
+Whereas `git pull` is a command used to fetch new commits from a remote repository **and** automatically merge them into your current local branch. *It combines the actions of git fetch and git merge in a single step.*
+
+**Pushing**
+
+ `git push` is a command used to upload your local commits and changes to a remote repository, updating its branches and history to match your local repository. This allows you to share your work and collaborate with others by making your changes available to them.
+
+ **Sharing Tags**
+
+ To push tags to a remote git repo: `git push origin <tagName>`
+
+ To delete tags from a remote git repo: `git push origin --delete <tagName>`
+
+ **Sharing Branches**
+
+ By default our branches are local.
+
+ We can push our branches like this: `git push -u origin <branchName>`
+
+ We can delete a remote branch like this: `git push -d origin <branchName>`
+
+ **Pull Requests**
+
+ A pull request (PR) is a request made by a developer in a Git-based version control system, such as GitHub or GitLab, to merge the changes from one branch (often a feature or bug-fix branch) into another branch (typically the main development branch). Pull requests facilitate code review, collaboration, and the controlled integration of changes, allowing team members to discuss, review, and approve modifications before they are merged into the main codebase.
+
+
+
 ### <a id="rewriting_history">Rewriting History ✍️</a>
