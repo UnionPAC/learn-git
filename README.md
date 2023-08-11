@@ -508,7 +508,38 @@ Whereas `git pull` is a command used to fetch new commits from a remote reposito
  **Pull Requests**
 
  A pull request (PR) is a request made by a developer in a Git-based version control system, such as GitHub or GitLab, to merge the changes from one branch (often a feature or bug-fix branch) into another branch (typically the main development branch). Pull requests facilitate code review, collaboration, and the controlled integration of changes, allowing team members to discuss, review, and approve modifications before they are merged into the main codebase.
-
-
-
 ### <a id="rewriting_history">Rewriting History ✍️</a>
+
+**What are some examples of re-writing history?**
+
+- Squash small, related commits
+- Split large commits
+- Reword commit messages
+- Drop unwanted commits
+- Modify commits
+
+**SUPER IMPORTANT - DON'T REWRITE PUBLIC HISTORY!!!!**
+
+**Undoing Commits**
+
+`git reset -- hard HEAD~1`
+
+**Reverting Commits**
+
+`git revert HEAD~3..HEAD`
+
+`git revert --no-commit HEAD~3..`
+
+**Recovering Lost Commits**
+
+`git reflog`
+
+`git reset <commitHash>`
+
+**Amending the Last Commit**
+
+`git commit --amend`
+
+**Interactive Rebase**
+
+`git rebase -i`
